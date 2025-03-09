@@ -49,7 +49,6 @@ export async function createTempEnvFile(
   content: string,
   fileName: string = ".env.test"
 ): Promise<vscode.Uri> {
-  // Create a temporary directory in the OS temp directory if workspace is not available
   const tempDirPath =
     vscode.workspace.workspaceFolders &&
     vscode.workspace.workspaceFolders.length > 0
@@ -58,12 +57,10 @@ export async function createTempEnvFile(
 
   const tempDirUri = vscode.Uri.file(tempDirPath)
 
-  // Ensure the temp directory exists
   await vscode.workspace.fs.createDirectory(tempDirUri)
 
   const fileUri = vscode.Uri.joinPath(tempDirUri, fileName)
 
-  // Write content to the file
   const encoder = new TextEncoder()
   await vscode.workspace.fs.writeFile(fileUri, encoder.encode(content))
 
@@ -75,7 +72,6 @@ export async function createTempEnvFile(
  */
 export async function cleanupTempFiles(): Promise<void> {
   try {
-    // Determine the temp directory path
     const tempDirPath =
       vscode.workspace.workspaceFolders &&
       vscode.workspace.workspaceFolders.length > 0
@@ -84,12 +80,10 @@ export async function cleanupTempFiles(): Promise<void> {
 
     const tempDirUri = vscode.Uri.file(tempDirPath)
 
-    // Check if directory exists before trying to delete it
     try {
       await vscode.workspace.fs.stat(tempDirUri)
       await vscode.workspace.fs.delete(tempDirUri, { recursive: true })
     } catch (error) {
-      // Directory doesn't exist, nothing to clean up
       console.log("Temp directory does not exist, nothing to clean up")
     }
   } catch (error) {

@@ -3,12 +3,33 @@
   "displayName": "EnvGuard",
   "description": "Hide sensitive values in environment files",
   "version": "0.0.1",
+  "publisher": "projectashik",
   "engines": {
     "vscode": "^1.96.0"
   },
   "icon": "envguard.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/projectashik/envguard.git"
+  },
+  "homepage": "https://github.com/projectashik/envguard",
+  "bugs": {
+    "url": "https://github.com/projectashik/envguard/issues"
+  },
+  "keywords": [
+    "env",
+    "environment",
+    "security",
+    "dotenv",
+    "hide",
+    "sensitive",
+    "secret",
+    "protection"
+  ],
   "categories": [
-    "Other"
+    "Other",
+    "Programming Languages",
+    "Formatters"
   ],
   "activationEvents": [
     "onLanguage:dotenv",
